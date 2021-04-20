@@ -23,12 +23,12 @@ class Main
 	  
 	  do Output.printString("CodeBreak: Player 1"); //Player 1 starts here
 	  do Output.println();
-      let code = Keyboard.readLine("Player 1, enter the code of numbers 0-9 without spaces: ");
-      let length = code.length();
+          let code = Keyboard.readLine("Player 1, enter the code of numbers 0-9 without spaces: ");
+          let length = code.length();
 	  let guessesLeft = 0;
 	  while(guessesLeft < 1)
-	  {
-	     let guessesLeft = Keyboard.readInt("How many guesses will Player 2 have? ");
+	  {   
+	      let guessesLeft = Keyboard.readInt("How many guesses will Player 2 have? ");
 	  }
 	  do Screen.clearScreen(); //Clear screen so that Player 2 does not see the previous answers.
 	  do Output.moveCursor(0, 0);
@@ -40,28 +40,28 @@ class Main
 	  let guesses = 0;
 	  let game = 0;
 	  while(game<1)
-	  {
-	    if (guesses = 3)
+	  {  
+	     if (guesses = 3)
 		{
-	       do Screen.clearScreen(); //Clear screen so that There is no overwriting.
-	       do Output.moveCursor(0, 0);
-	       do Output.printString("CodeBreak: Player 2"); 
-	       do Output.println();
-	       do Output.printString("The length of Player 1's code is: ");
-	       do Output.printInt(length);
-	       do Output.println();
+	           do Screen.clearScreen(); //Clear screen so that There is no overwriting.
+	           do Output.moveCursor(0, 0);
+	           do Output.printString("CodeBreak: Player 2"); 
+	           do Output.println();
+	           do Output.printString("The length of Player 1's code is: ");
+	           do Output.printInt(length);
+	           do Output.println();
 		   let guesses = 0;
 		}
-	    do Output.printString("Guesses remaining: ");
+	        do Output.printString("Guesses remaining: ");
 		do Output.printInt(guessesLeft);
 		do Output.println();
-	    let guess = Keyboard.readLine("Enter your guess: ");
+	        let guess = Keyboard.readLine("Enter your guess: ");
 		while(~(guess.length() = length))
 		{
 		   let guess = Keyboard.readLine("That guess is not the right length, try again: ");
 		}
 		let i = 0;
-	    let matching = true;
+	        let matching = true;
 		while((i < length) & matching)
 		{
 		   if(~(guess.charAt(i) = code.charAt(i)))
@@ -89,23 +89,23 @@ class Main
 		      }
 		      //Check if the number appears in any place
 		      let j = 0;
-			  let notFound = true;
+		      let notFound = true;
 		      while((j<length) & notFound)
 		      {
 		         if(guess.charAt(i) = code.charAt(j))
-			     {
-			        let numbers = numbers + 1;
-					let notFound = false;
-			     }
-				 let j = j + 1;
+			 {
+			    let numbers = numbers + 1;
+			    let notFound = false;
+			 }
+			 let j = j + 1;
 		      }
-			  let i = i + 1;
+		      let i = i + 1;
 		   }
 		   do Output.printString("Number of digits in the right place: ");
 		   do Output.printInt(places);
 		   do Output.println();
 		   do Output.printInt(numbers);
-	       do Output.printString(" of your digits appear in the code.");
+	           do Output.printString(" of your digits appear in the code.");
 		   do Output.println();
 		   do Output.println();
 		   let guessesLeft = guessesLeft - 1;
@@ -120,14 +120,14 @@ class Main
 	  if(game = 1)
 	  {
 	     do Output.printString("Out of guesses. Player 1 wins! The code was ");
-		 do Output.printString(code);
+	     do Output.printString(code);
 	  }else
-	  {
-	    do Output.printString("Player 2 guessed the code, Player 2 wins!");
-		do Output.println();
-		do Output.printString("There were ");
-		do Output.printInt(guessesLeft);
-	    do Output.printString(" guesses remaining");
+	  {  
+	     do Output.printString("Player 2 guessed the code, Player 2 wins!");
+	     do Output.println();
+	     do Output.printString("There were ");
+	     do Output.printInt(guessesLeft);
+	     do Output.printString(" guesses remaining");
 	  }
 	  return;
     }
