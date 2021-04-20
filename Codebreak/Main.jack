@@ -1,0 +1,135 @@
+/**
+ * Implements the Codebreak game, inspired by the game "Mastermind".
+ * Player 1 sets the code, a string of numbers. The code can have repeated numbers if the players want, but
+ * repeated numbers may make the game harder for Player 2 and the shared digits information less clear.
+ * Player 2 is told the length of the code and given a certain number of tries to find it.
+ * When Player 2 enters a guess that was wrong, they will be told how many numbers were in the correct
+ * position and how many of the numbers also appear in the code, regardless of place. 
+ * If Player 2 guesses correctly, the game informs them and also says how many guesses were left.
+ * If Player 2 runs out of guesses, they are told the correct code and Player 1 wins.
+ */
+class Main 
+{
+    function void main() 
+	{
+	  var String code, guess;
+	  var int length;
+ 	  var int guessesLeft, guesses;
+	  var int places, numbers; 
+	  var boolean matching, notFound;
+	  var int game; //The state of the game:
+	                //0 = there are guesses remaining, 1 = out of guesses, 2 = code has been found
+	  var int i, j;
+	  
+	  do Output.printString("CodeBreak: Player 1"); //Player 1 starts here
+	  do Output.println();
+      let code = Keyboard.readLine("Player 1, enter the code of numbers 0-9 without spaces: ");
+      let length = code.length();
+	  let guessesLeft = 0;
+	  while(guessesLeft < 1)
+	  {
+	     let guessesLeft = Keyboard.readInt("How many guesses will Player 2 have? ");
+	  }
+	  do Screen.clearScreen(); //Clear screen so that Player 2 does not see the previous answers.
+	  do Output.moveCursor(0, 0);
+	  do Output.printString("CodeBreak: Player 2"); //Player 2 starts here
+	  do Output.println();
+	  do Output.printString("The length of Player 1's code is: ");
+	  do Output.printInt(length);
+	  do Output.println();
+	  let guesses = 0;
+	  while(game<1)
+	  {
+	    if (guesses = 3)
+		{
+	       do Screen.clearScreen(); //Clear screen so that There is no overwriting.
+	       do Output.moveCursor(0, 0);
+	       do Output.printString("CodeBreak: Player 2"); 
+	       do Output.println();
+	       do Output.printString("The length of Player 1's code is: ");
+	       do Output.printInt(length);
+	       do Output.println();
+		   let guesses = 0;
+		}
+	    do Output.printString("Guesses remaining: ");
+		do Output.printInt(guessesLeft);
+		do Output.println();
+	    let guess = Keyboard.readLine("Enter your guess: ");
+		while(~(guess.length() = length))
+		{
+		   let guess = Keyboard.readLine("That guess is not the right length, try again: ");
+		}
+		let i = 0;
+	    let matching = true;
+		while((i < length) & matching)
+		{
+		   if(~(guess.charAt(i) = code.charAt(i)))
+		   {
+		      let matching = false;
+
+		   }
+		   let i = i + 1;
+		}
+		if(matching)
+		{
+		   let guessesLeft = guessesLeft - 1;
+		   let game = 2;
+		}else
+		{
+		   let i = 0;
+		   let places = 0;
+		   let numbers = 0;
+		   while(i<length)
+		   {
+
+		      //Check for correct number in correct place;
+		      if(guess.charAt(i) = code.charAt(i))
+		      {
+		        let places = places + 1;
+		      }
+		      //Check if the number appears in any place
+		      let j = 0;
+			  let notFound = true;
+		      while((j<length) & notFound)
+		      {
+		         if(guess.charAt(i) = code.charAt(j))
+			     {
+			        let numbers = numbers + 1;
+					let notFound = false;
+			     }
+				 let j = j + 1;
+		      }
+			  let i = i + 1;
+		   }
+		   
+		   do Output.printString("Number of digits in the right place: ");
+		   do Output.printInt(places);
+		   do Output.println();
+		   do Output.printInt(numbers);
+	       do Output.printString(" of your digits appear in the code.");
+		   do Output.println();
+		   do Output.println();
+		   let guessesLeft = guessesLeft - 1;
+		   let guesses = guesses + 1;
+		   if(guessesLeft = 0)
+		   {
+		      let game = 1;
+		   }
+		}
+	  }
+	  //Game over
+	  if(game = 1)
+	  {
+	     do Output.printString("Out of guesses. Player 1 wins! The code was ");
+		 do Output.printString(code);
+	  }else
+	  {
+	     do Output.printString("Player 2 guessed the code, Player 2 wins!");
+		 do Output.println();
+		 do Output.printString("There were ");
+		 do Output.printInt(guessesLeft);
+		 do Output.printString(" guesses remaining");
+	  }
+	  return;
+    }
+}
