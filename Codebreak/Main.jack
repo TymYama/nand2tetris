@@ -123,11 +123,11 @@ class Main
 		 do Output.printString(code);
 	  }else
 	  {
-	     do Output.printString("Player 2 guessed the code, Player 2 wins!");
-		 do Output.println();
-		 do Output.printString("There were ");
-		 do Output.printInt(guessesLeft);
-		 do Output.printString(" guesses remaining");
+	    do Output.printString("Player 2 guessed the code, Player 2 wins!");
+		do Output.println();
+		do Output.printString("There were ");
+		do Output.printInt(guessesLeft);
+	    do Output.printString(" guesses remaining");
 	  }
 	  return;
     }
