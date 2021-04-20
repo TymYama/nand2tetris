@@ -38,6 +38,7 @@ class Main
 	  do Output.printInt(length);
 	  do Output.println();
 	  let guesses = 0;
+	  let game = 0;
 	  while(game<1)
 	  {
 	    if (guesses = 3)
@@ -66,7 +67,6 @@ class Main
 		   if(~(guess.charAt(i) = code.charAt(i)))
 		   {
 		      let matching = false;
-
 		   }
 		   let i = i + 1;
 		}
@@ -101,7 +101,6 @@ class Main
 		      }
 			  let i = i + 1;
 		   }
-		   
 		   do Output.printString("Number of digits in the right place: ");
 		   do Output.printInt(places);
 		   do Output.println();
